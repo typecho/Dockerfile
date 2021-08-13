@@ -1,12 +1,17 @@
 ARG TAG=latest
 FROM php:$TAG
 
+ENV MAX_POST_BODY=10m
+
 # default download latest dev version
 ARG URL="https://nightly.link/typecho/typecho/workflows/Typecho-dev-Ci/master/typecho_build.zip"
 
+# copy init
+COPY --chown=root:root ./scripts/init.sh /bin/init
+
 # install bash
 COPY --chown=root:root ./scripts/install-bash.sh .
-RUN ./install-bash.sh
+RUN ./install-bash.sh && rm -rf install-bash.sh
 
 # define function
 COPY --chown=root:root ./scripts/use.sh /bin/use

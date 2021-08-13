@@ -1,0 +1,2 @@
+
+ENTRYPOINT init ; php -a
