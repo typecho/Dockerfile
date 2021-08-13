@@ -1,0 +1,40 @@
+ARG TAG=latest
+FROM php:$TAG
+
+# install bash
+COPY --chown=root:root check.sh .
+RUN ./check.sh
+
+# define function
+COPY --chown=root:root use.sh /bin/use
+
+RUN use 1 4
+
+# update
+RUN `use "apt-get udpate" "apk update"`
+
+# install dependencies
+RUN `use "apt-get install -y" "apk add"` \
+    `use libfreetype6-dev freetype-dev` \
+    `use libjpeg-dev libjpeg-turbo-dev` \
+    `use libpq-dev postgresql-dev` \
+    libpng-dev \
+    libzip-dev \
+    libwebp-dev
+
+# install extensions
+RUN docker-php-ext-configure gd \
+        --with-freetype \
+        --with-jpeg \
+        --with-webp \
+    && docker-php-ext-install -j "$(nproc)" \
+        bcmath \
+        exif \
+        gd \
+        zip \
+        mysqli \
+        pdo_mysql \
+        pdo_pgsql \
+        sockets \
+        tokenizer \
+        opcache
