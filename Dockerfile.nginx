@@ -1,0 +1,6 @@
+# install nginx
+RUN `use "apt-get install" "apk add"` \
+    nginx
+
+# expose nginx
+EXPOSE 80
