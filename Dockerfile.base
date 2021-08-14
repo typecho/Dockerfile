@@ -20,7 +20,7 @@ COPY --chown=root:root ./scripts/use.sh /bin/use
 RUN `use "apt-get update" "apk update"`
 
 # install dependencies
-RUN `use "apt-get install -y" "apk add"` \
+RUN `use "apt-get install --no-install-recommends -y" "apk add --no-cache"` \
     `use libfreetype6-dev freetype-dev` \
     `use libjpeg62-turbo-dev libjpeg-turbo-dev` \
     `use libpq-dev postgresql-dev` \
@@ -72,6 +72,26 @@ RUN curl -o langs.zip -fL https://nightly.link/typecho/languages/workflows/ci/ma
     && rm -rf langs.zip
 
 RUN chown -Rf www-data:www-data /app
+
+# uninstall dependencies
+RUN `use "apt-get purge -y -f --force-yes" "apk del -f --purge"` \
+    `use libfreetype6-dev freetype-dev` \
+    `use libjpeg62-turbo-dev libjpeg-turbo-dev` \
+    `use libpq-dev postgresql-dev` \
+    `use libpcre3-dev pcre-dev` \
+    `use llvm llvm11` \
+    libpng-dev \
+    libzip-dev \
+    libwebp-dev \
+    curl \
+    unzip \
+    autoconf \
+    g++ \
+    gcc \
+    clang \
+    perl \
+    make \
+    libtool
 
 VOLUME /app/usr
 WORKDIR /app
