@@ -37,7 +37,7 @@ jobs:
           build-args: |
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
-            VERSION=${{ steps.generate.outputs.VERSION }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
   build_73_cli:
     concurrency: build_73_cli
     runs-on: ubuntu-latest
@@ -67,7 +67,7 @@ jobs:
           build-args: |
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
-            VERSION=${{ steps.generate.outputs.VERSION }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
   build_73_fpm:
     concurrency: build_73_fpm
     runs-on: ubuntu-latest
@@ -97,7 +97,7 @@ jobs:
           build-args: |
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
-            VERSION=${{ steps.generate.outputs.VERSION }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
   build_73_apache:
     concurrency: build_73_apache
     runs-on: ubuntu-latest
@@ -127,7 +127,7 @@ jobs:
           build-args: |
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
-            VERSION=${{ steps.generate.outputs.VERSION }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
   build_74_php:
     concurrency: build_74_php
     runs-on: ubuntu-latest
@@ -157,7 +157,7 @@ jobs:
           build-args: |
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
-            VERSION=${{ steps.generate.outputs.VERSION }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
   build_74_cli:
     concurrency: build_74_cli
     runs-on: ubuntu-latest
@@ -187,7 +187,7 @@ jobs:
           build-args: |
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
-            VERSION=${{ steps.generate.outputs.VERSION }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
   build_74_fpm:
     concurrency: build_74_fpm
     runs-on: ubuntu-latest
@@ -217,7 +217,7 @@ jobs:
           build-args: |
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
-            VERSION=${{ steps.generate.outputs.VERSION }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
   build_74_apache:
     concurrency: build_74_apache
     runs-on: ubuntu-latest
@@ -247,7 +247,7 @@ jobs:
           build-args: |
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
-            VERSION=${{ steps.generate.outputs.VERSION }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
   build_80_php:
     concurrency: build_80_php
     runs-on: ubuntu-latest
@@ -277,7 +277,7 @@ jobs:
           build-args: |
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
-            VERSION=${{ steps.generate.outputs.VERSION }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
   build_80_cli:
     concurrency: build_80_cli
     runs-on: ubuntu-latest
@@ -307,7 +307,7 @@ jobs:
           build-args: |
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
-            VERSION=${{ steps.generate.outputs.VERSION }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
   build_80_fpm:
     concurrency: build_80_fpm
     runs-on: ubuntu-latest
@@ -337,7 +337,7 @@ jobs:
           build-args: |
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
-            VERSION=${{ steps.generate.outputs.VERSION }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
   build_80_apache:
     concurrency: build_80_apache
     runs-on: ubuntu-latest
@@ -367,4 +367,4 @@ jobs:
           build-args: |
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
-            VERSION=${{ steps.generate.outputs.VERSION }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}

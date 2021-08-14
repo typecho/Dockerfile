@@ -51,7 +51,7 @@ do
           build-args: |
             TAG=\${{ steps.generate.outputs.TAG }}
             URL=\${{ steps.generate.outputs.URL }}
-            VERSION=\${{ steps.generate.outputs.VERSION }}
+            CONFIG=\${{ steps.generate.outputs.CONFIG }}
 EOF
     done
 done
