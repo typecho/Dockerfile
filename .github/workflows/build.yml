@@ -8,8 +8,8 @@ on:
         required: true
 
 jobs:
-  build_73_php:
-    concurrency: build_73_php
+  build_73_php_debian:
+    concurrency: build_73_php_debian
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -26,7 +26,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 php
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o debian php
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -38,8 +38,8 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
-  build_73_cli:
-    concurrency: build_73_cli
+  build_73_cli_debian:
+    concurrency: build_73_cli_debian
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -56,7 +56,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 cli
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o debian cli
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -68,8 +68,8 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
-  build_73_fpm:
-    concurrency: build_73_fpm
+  build_73_fpm_debian:
+    concurrency: build_73_fpm_debian
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -86,7 +86,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 fpm
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o debian fpm
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -98,8 +98,8 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
-  build_73_apache:
-    concurrency: build_73_apache
+  build_73_apache_debian:
+    concurrency: build_73_apache_debian
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -116,7 +116,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 apache
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o debian apache
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -128,8 +128,8 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
-  build_74_php:
-    concurrency: build_74_php
+  build_74_php_debian:
+    concurrency: build_74_php_debian
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -146,7 +146,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 php
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o debian php
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -158,8 +158,8 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
-  build_74_cli:
-    concurrency: build_74_cli
+  build_74_cli_debian:
+    concurrency: build_74_cli_debian
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -176,7 +176,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 cli
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o debian cli
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -188,8 +188,8 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
-  build_74_fpm:
-    concurrency: build_74_fpm
+  build_74_fpm_debian:
+    concurrency: build_74_fpm_debian
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -206,7 +206,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 fpm
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o debian fpm
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -218,8 +218,8 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
-  build_74_apache:
-    concurrency: build_74_apache
+  build_74_apache_debian:
+    concurrency: build_74_apache_debian
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -236,7 +236,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 apache
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o debian apache
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -248,8 +248,8 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
-  build_80_php:
-    concurrency: build_80_php
+  build_80_php_debian:
+    concurrency: build_80_php_debian
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -266,7 +266,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 php
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o debian php
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -278,8 +278,8 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
-  build_80_cli:
-    concurrency: build_80_cli
+  build_80_cli_debian:
+    concurrency: build_80_cli_debian
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -296,7 +296,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 cli
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o debian cli
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -308,8 +308,8 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
-  build_80_fpm:
-    concurrency: build_80_fpm
+  build_80_fpm_debian:
+    concurrency: build_80_fpm_debian
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -326,7 +326,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 fpm
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o debian fpm
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -338,8 +338,8 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
-  build_80_apache:
-    concurrency: build_80_apache
+  build_80_apache_debian:
+    concurrency: build_80_apache_debian
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -356,7 +356,367 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 apache
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o debian apache
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: ${{ steps.generate.outputs.PLATFORM }}
+          push: true
+          tags: ${{ steps.generate.outputs.VERSION }}
+          build-args: |
+            TAG=${{ steps.generate.outputs.TAG }}
+            URL=${{ steps.generate.outputs.URL }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
+  build_73_php_alpine:
+    concurrency: build_73_php_alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Generate Dockerfile
+        id: generate
+        run: |
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o alpine php
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: ${{ steps.generate.outputs.PLATFORM }}
+          push: true
+          tags: ${{ steps.generate.outputs.VERSION }}
+          build-args: |
+            TAG=${{ steps.generate.outputs.TAG }}
+            URL=${{ steps.generate.outputs.URL }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
+  build_73_cli_alpine:
+    concurrency: build_73_cli_alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Generate Dockerfile
+        id: generate
+        run: |
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o alpine cli
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: ${{ steps.generate.outputs.PLATFORM }}
+          push: true
+          tags: ${{ steps.generate.outputs.VERSION }}
+          build-args: |
+            TAG=${{ steps.generate.outputs.TAG }}
+            URL=${{ steps.generate.outputs.URL }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
+  build_73_fpm_alpine:
+    concurrency: build_73_fpm_alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Generate Dockerfile
+        id: generate
+        run: |
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o alpine fpm
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: ${{ steps.generate.outputs.PLATFORM }}
+          push: true
+          tags: ${{ steps.generate.outputs.VERSION }}
+          build-args: |
+            TAG=${{ steps.generate.outputs.TAG }}
+            URL=${{ steps.generate.outputs.URL }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
+  build_73_apache_alpine:
+    concurrency: build_73_apache_alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Generate Dockerfile
+        id: generate
+        run: |
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o alpine apache
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: ${{ steps.generate.outputs.PLATFORM }}
+          push: true
+          tags: ${{ steps.generate.outputs.VERSION }}
+          build-args: |
+            TAG=${{ steps.generate.outputs.TAG }}
+            URL=${{ steps.generate.outputs.URL }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
+  build_74_php_alpine:
+    concurrency: build_74_php_alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Generate Dockerfile
+        id: generate
+        run: |
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o alpine php
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: ${{ steps.generate.outputs.PLATFORM }}
+          push: true
+          tags: ${{ steps.generate.outputs.VERSION }}
+          build-args: |
+            TAG=${{ steps.generate.outputs.TAG }}
+            URL=${{ steps.generate.outputs.URL }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
+  build_74_cli_alpine:
+    concurrency: build_74_cli_alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Generate Dockerfile
+        id: generate
+        run: |
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o alpine cli
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: ${{ steps.generate.outputs.PLATFORM }}
+          push: true
+          tags: ${{ steps.generate.outputs.VERSION }}
+          build-args: |
+            TAG=${{ steps.generate.outputs.TAG }}
+            URL=${{ steps.generate.outputs.URL }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
+  build_74_fpm_alpine:
+    concurrency: build_74_fpm_alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Generate Dockerfile
+        id: generate
+        run: |
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o alpine fpm
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: ${{ steps.generate.outputs.PLATFORM }}
+          push: true
+          tags: ${{ steps.generate.outputs.VERSION }}
+          build-args: |
+            TAG=${{ steps.generate.outputs.TAG }}
+            URL=${{ steps.generate.outputs.URL }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
+  build_74_apache_alpine:
+    concurrency: build_74_apache_alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Generate Dockerfile
+        id: generate
+        run: |
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o alpine apache
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: ${{ steps.generate.outputs.PLATFORM }}
+          push: true
+          tags: ${{ steps.generate.outputs.VERSION }}
+          build-args: |
+            TAG=${{ steps.generate.outputs.TAG }}
+            URL=${{ steps.generate.outputs.URL }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
+  build_80_php_alpine:
+    concurrency: build_80_php_alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Generate Dockerfile
+        id: generate
+        run: |
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o alpine php
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: ${{ steps.generate.outputs.PLATFORM }}
+          push: true
+          tags: ${{ steps.generate.outputs.VERSION }}
+          build-args: |
+            TAG=${{ steps.generate.outputs.TAG }}
+            URL=${{ steps.generate.outputs.URL }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
+  build_80_cli_alpine:
+    concurrency: build_80_cli_alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Generate Dockerfile
+        id: generate
+        run: |
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o alpine cli
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: ${{ steps.generate.outputs.PLATFORM }}
+          push: true
+          tags: ${{ steps.generate.outputs.VERSION }}
+          build-args: |
+            TAG=${{ steps.generate.outputs.TAG }}
+            URL=${{ steps.generate.outputs.URL }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
+  build_80_fpm_alpine:
+    concurrency: build_80_fpm_alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Generate Dockerfile
+        id: generate
+        run: |
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o alpine fpm
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: ${{ steps.generate.outputs.PLATFORM }}
+          push: true
+          tags: ${{ steps.generate.outputs.VERSION }}
+          build-args: |
+            TAG=${{ steps.generate.outputs.TAG }}
+            URL=${{ steps.generate.outputs.URL }}
+            CONFIG=${{ steps.generate.outputs.CONFIG }}
+  build_80_apache_alpine:
+    concurrency: build_80_apache_alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Generate Dockerfile
+        id: generate
+        run: |
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o alpine apache
       - name: Build and push
         uses: docker/build-push-action@v2
         with:

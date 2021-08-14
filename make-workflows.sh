@@ -13,15 +13,18 @@ on:
 jobs:
 EOF
 
+os=("debian" "alpine")
 php=("7.3" "7.4" "8.0")
 platform=("php" "cli" "fpm" "apache")
 
-for p in ${php[@]}
+for o in ${os[@]}
 do
-    for f in ${platform[@]}
+    for p in ${php[@]}
     do
-        id="build_${p//./}_${f}"
-        cat <<EOF
+        for f in ${platform[@]}
+        do
+            id="build_${p//./}_${f}_${o}"
+            cat <<EOF
   ${id}:
     concurrency: ${id}
     runs-on: ubuntu-latest
@@ -40,7 +43,7 @@ do
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v \${{ github.event.inputs.version }} -p ${p} ${f}
+          ./build.sh -g -v \${{ github.event.inputs.version }} -p ${p} -o ${o} ${f}
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -53,5 +56,6 @@ do
             URL=\${{ steps.generate.outputs.URL }}
             CONFIG=\${{ steps.generate.outputs.CONFIG }}
 EOF
+        done
     done
 done
