@@ -12,26 +12,26 @@ ARG CONFIG=""
 
 # copy init
 COPY --chown=root:root ./scripts/init.sh /bin/init
+COPY --chown=root:root ./scripts/before.sh /bin/before
+COPY --chown=root:root ./scripts/after.sh /bin/after
 
 # define function
 COPY --chown=root:root ./scripts/use.sh /bin/use
 
-# update
-RUN `use "apt-get update" "apk update"`
-
 # install dependencies
-RUN `use "apt-get install --no-install-recommends -y" "apk add --no-cache"` \
-    `use libfreetype6-dev freetype-dev` \
-    `use libjpeg62-turbo-dev libjpeg-turbo-dev` \
-    `use libpq-dev postgresql-dev` \
-    libpng-dev \
-    libzip-dev \
-    libwebp-dev \
-    curl \
-    unzip
-
-# install extensions
-RUN docker-php-ext-configure gd \
+RUN savedAptMark="$(before)" \
+    && `use "apt-get update" "apk update"` \
+    && `use "apt-get install --no-install-recommends -y" "apk add --no-cache --virtual .build-deps"` \
+        `use libfreetype6-dev freetype-dev` \
+        `use libjpeg62-turbo-dev libjpeg-turbo-dev` \
+        `use libpq-dev postgresql-dev` \
+        libpng-dev \
+        libzip-dev \
+        libwebp-dev \
+        $PHPIZE_DEPS \
+        curl \
+        unzip \
+    && docker-php-ext-configure gd \
         --with-freetype${CONFIG} \
         --with-jpeg${CONFIG} \
         --with-webp${CONFIG} \
@@ -45,7 +45,8 @@ RUN docker-php-ext-configure gd \
         pdo_pgsql \
         sockets \
         tokenizer \
-        opcache
+        opcache \
+    && after "${savedAptMark}"
 
 # config php error handler
 RUN { \
@@ -60,38 +61,8 @@ RUN { \
 		echo 'html_errors = Off'; \
 	} > /usr/local/etc/php/conf.d/error-logging.ini
 
-# download source code
-RUN curl -o typecho.zip -fL $URL \
-    && unzip typecho.zip -d /app \
-    && mkdir /app/usr/uploads && chmod 777 /app/usr/uploads \
-    && rm -rf typecho.zip
-
-# download langs
-RUN curl -o langs.zip -fL https://nightly.link/typecho/languages/workflows/ci/master/langs.zip \
-    && unzip langs.zip -d /app/usr/langs \
-    && rm -rf langs.zip
-
-RUN chown -Rf www-data:www-data /app
-
 # uninstall dependencies
-RUN `use "apt-get purge -y -f --force-yes" "apk del -f --purge"` \
-    `use libfreetype6-dev freetype-dev` \
-    `use libjpeg62-turbo-dev libjpeg-turbo-dev` \
-    `use libpq-dev postgresql-dev` \
-    `use libpcre3-dev pcre-dev` \
-    `use llvm llvm11` \
-    libpng-dev \
-    libzip-dev \
-    libwebp-dev \
-    curl \
-    unzip \
-    autoconf \
-    g++ \
-    gcc \
-    clang \
-    perl \
-    make \
-    libtool
+RUN rm -rf /bin/use /bin/before /bin/after
 
 VOLUME /app/usr
 WORKDIR /app
