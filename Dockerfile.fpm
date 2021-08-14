@@ -1,4 +1,4 @@
 # expose fcgi port
 EXPOSE 9000
 
-ENTRYPOINT init ; php-fpm
+CMD init ; php-fpm

@@ -1,2 +1,2 @@
 
-ENTRYPOINT init ; php -a
+CMD init ; php -a

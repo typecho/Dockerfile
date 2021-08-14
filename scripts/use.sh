@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 IS_APLINE=$(cat /etc/os-release | grep "NAME=" | grep -ic "Alpine")
 
