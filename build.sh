@@ -52,6 +52,8 @@ PUSH=""
 CONFIG="-dir=/usr/include/"
 BUILDX="build"
 
+cat Dockerfile.base > Dockerfile
+
 if [ ${type} != "php" ]; then
     MIDDLE="-${type}"
     cat "Dockerfile.${type}" >> Dockerfile
@@ -70,9 +72,6 @@ if [ ${php} != "7.3" ]; then
 fi
 
 TAG="${LEFT}${MIDDLE}${RIGHT}"
-FILE="Dockerfile.${TAG}"
-
-cat Dockerfile.base > ${FILE}
 
 if [ ${generate} -eq 0 ]; then
     echo $TAG
@@ -91,7 +90,7 @@ if [ ${generate} -eq 0 ]; then
         fi
     fi
 
-    docker ${BUILDX} -t joyqi/typecho:${version}-php${TAG} --build-arg TAG=${TAG} --build-arg URL=${URL} --build-arg CONFIG="${CONFIG}" -f ${FILE} .
+    docker ${BUILDX} -t joyqi/typecho:${version}-php${TAG} --build-arg TAG=${TAG} --build-arg URL=${URL} --build-arg CONFIG="${CONFIG}" .
 
     if [ ${setup_buildx} -eq 1 ]; then
         docker buildx stop
@@ -102,7 +101,11 @@ if [ ${generate} -eq 0 ]; then
         docker push joyqi/typecho:${version}-php${TAG}
     fi
     
-    rm -rf ${FILE}
+    rm -rf Dockerfile
 else
-    echo $FILE
+    echo "::set-output name=TAG::${TAG}"
+    echo "::set-output name=URL::${URL}"
+    echo "::set-output name=CONFIG::${CONFIG}"
+    echo "::set-output name=PLATFORM::${PLATFORM}"
+    echo "::set-output name=VERSION::joyqi/typecho:${version}-php${TAG}"
 fi
