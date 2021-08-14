@@ -8,7 +8,8 @@ on:
         required: true
 
 jobs:
-  build_and_push:
+  build_php73:
+    concurrency: build-${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -25,5 +26,39 @@ jobs:
       - name: Build and push
         run: |
           ./build-on-github.sh 7.3 ${{ github.event.inputs.version }}
+  build_php74:
+    concurrency: build-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        run: |
           ./build-on-github.sh 7.4 ${{ github.event.inputs.version }}
+  build_php80:
+    concurrency: build-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        run: |
           ./build-on-github.sh 8.0 ${{ github.event.inputs.version }}
