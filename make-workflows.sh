@@ -23,8 +23,9 @@ do
     do
         for f in ${platform[@]}
         do
-            id="build_${p//./}_${f}_${o}"
-            cat <<EOF
+            if [[ ${o} != "alpine" || ${f} != "apache" ]]; then
+                id="build_${p//./}_${f}_${o}"
+                cat <<EOF
   ${id}:
     concurrency: ${id}
     runs-on: ubuntu-latest
@@ -56,6 +57,7 @@ do
             URL=\${{ steps.generate.outputs.URL }}
             CONFIG=\${{ steps.generate.outputs.CONFIG }}
 EOF
+            fi
         done
     done
 done
