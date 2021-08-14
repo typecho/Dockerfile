@@ -22,6 +22,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and push
         run: |
-          ./build-on-github.sh ${{ github.event.inputs.version }} 7.3
-          ./build-on-github.sh ${{ github.event.inputs.version }} 7.4
-          ./build-on-github.sh ${{ github.event.inputs.version }} 8.0
+          ./build-on-github.sh 7.3 ${{ github.event.inputs.version }}
+          ./build-on-github.sh 7.4 ${{ github.event.inputs.version }}
+          ./build-on-github.sh 8.0 ${{ github.event.inputs.version }}
