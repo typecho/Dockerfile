@@ -8,6 +8,7 @@ ENV TIMEZONE=UTC
 
 # default download latest dev version
 ARG URL="https://nightly.link/typecho/typecho/workflows/Typecho-dev-Ci/master/typecho_build.zip"
+ARG CONFIG=""
 
 # copy init
 COPY --chown=root:root ./scripts/init.sh /bin/init
@@ -31,9 +32,9 @@ RUN `use "apt-get install -y" "apk add"` \
 
 # install extensions
 RUN docker-php-ext-configure gd \
-        --with-freetype \
-        --with-jpeg \
-        --with-webp \
+        --with-freetype${CONFIG} \
+        --with-jpeg${CONFIG} \
+        --with-webp${CONFIG} \
     && docker-php-ext-install -j "$(nproc)" \
         bcmath \
         exif \

@@ -70,3 +70,75 @@ RUN sed -ri -e 's!/var/www/!/app!g' /etc/apache2/apache2.conf /etc/apache2/conf-
 EXPOSE 80
 
 CMD init ; apachectl -D FOREGROUND
+# rewrite rule
+RUN a2enmod rewrite expires
+RUN { \
+        echo 'RewriteEngine On'; \
+        echo 'RewriteBase /'; \
+        echo 'RewriteCond %{REQUEST_FILENAME} !-f'; \
+        echo 'RewriteCond %{REQUEST_FILENAME} !-d'; \
+        echo 'RewriteRule ^(.*)$ /index.php/$1 [L]'; \
+    } > /app/.htaccess
+
+# change wwwroot
+RUN sed -ri -e 's!/var/www/html!/app!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!/app!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# expose http
+EXPOSE 80
+
+CMD init ; apachectl -D FOREGROUND
+# rewrite rule
+RUN a2enmod rewrite expires
+RUN { \
+        echo 'RewriteEngine On'; \
+        echo 'RewriteBase /'; \
+        echo 'RewriteCond %{REQUEST_FILENAME} !-f'; \
+        echo 'RewriteCond %{REQUEST_FILENAME} !-d'; \
+        echo 'RewriteRule ^(.*)$ /index.php/$1 [L]'; \
+    } > /app/.htaccess
+
+# change wwwroot
+RUN sed -ri -e 's!/var/www/html!/app!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!/app!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# expose http
+EXPOSE 80
+
+CMD init ; apachectl -D FOREGROUND
+# rewrite rule
+RUN a2enmod rewrite expires
+RUN { \
+        echo 'RewriteEngine On'; \
+        echo 'RewriteBase /'; \
+        echo 'RewriteCond %{REQUEST_FILENAME} !-f'; \
+        echo 'RewriteCond %{REQUEST_FILENAME} !-d'; \
+        echo 'RewriteRule ^(.*)$ /index.php/$1 [L]'; \
+    } > /app/.htaccess
+
+# change wwwroot
+RUN sed -ri -e 's!/var/www/html!/app!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!/app!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# expose http
+EXPOSE 80
+
+CMD init ; apachectl -D FOREGROUND
+# rewrite rule
+RUN a2enmod rewrite expires
+RUN { \
+        echo 'RewriteEngine On'; \
+        echo 'RewriteBase /'; \
+        echo 'RewriteCond %{REQUEST_FILENAME} !-f'; \
+        echo 'RewriteCond %{REQUEST_FILENAME} !-d'; \
+        echo 'RewriteRule ^(.*)$ /index.php/$1 [L]'; \
+    } > /app/.htaccess
+
+# change wwwroot
+RUN sed -ri -e 's!/var/www/html!/app!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!/app!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# expose http
+EXPOSE 80
+
+CMD init ; apachectl -D FOREGROUND
