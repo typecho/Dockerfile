@@ -48,7 +48,10 @@ do
           platforms: \${{ steps.generate.outputs.PLATFORM }}
           push: true
           tags: \${{ steps.generate.outputs.VERSION }}
-          build-args: TAG=\${{ steps.generate.outputs.TAG }},URL=\${{ steps.generate.outputs.URL }},VERSION=\${{ steps.generate.outputs.VERSION }}
+          build-args:
+            - TAG=\${{ steps.generate.outputs.TAG }}
+            - URL=\${{ steps.generate.outputs.URL }}
+            - VERSION=\${{ steps.generate.outputs.VERSION }}
 EOF
     done
 done
