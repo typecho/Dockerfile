@@ -20,9 +20,10 @@ for p in ${php[@]}
 do
     for f in ${platform[@]}
     do
+        id="build_${p//./}_${f}"
         cat <<EOF
-  build-${p}-${f}:
-    concurrency: build-${p}-${f}
+  ${id}:
+    concurrency: ${id}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 

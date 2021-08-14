@@ -8,8 +8,8 @@ on:
         required: true
 
 jobs:
-  build-7.3-php:
-    concurrency: build-7.3-php
+  build_73_php:
+    concurrency: build_73_php
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -35,8 +35,8 @@ jobs:
           push: true
           tags: ${{ steps.generate.outputs.VERSION }}
           build-args: TAG=${{ steps.generate.outputs.TAG }},URL=${{ steps.generate.outputs.URL }},VERSION=${{ steps.generate.outputs.VERSION }}
-  build-7.3-cli:
-    concurrency: build-7.3-cli
+  build_73_cli:
+    concurrency: build_73_cli
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -62,8 +62,8 @@ jobs:
           push: true
           tags: ${{ steps.generate.outputs.VERSION }}
           build-args: TAG=${{ steps.generate.outputs.TAG }},URL=${{ steps.generate.outputs.URL }},VERSION=${{ steps.generate.outputs.VERSION }}
-  build-7.3-fpm:
-    concurrency: build-7.3-fpm
+  build_73_fpm:
+    concurrency: build_73_fpm
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -89,8 +89,8 @@ jobs:
           push: true
           tags: ${{ steps.generate.outputs.VERSION }}
           build-args: TAG=${{ steps.generate.outputs.TAG }},URL=${{ steps.generate.outputs.URL }},VERSION=${{ steps.generate.outputs.VERSION }}
-  build-7.3-apache:
-    concurrency: build-7.3-apache
+  build_73_apache:
+    concurrency: build_73_apache
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -116,8 +116,8 @@ jobs:
           push: true
           tags: ${{ steps.generate.outputs.VERSION }}
           build-args: TAG=${{ steps.generate.outputs.TAG }},URL=${{ steps.generate.outputs.URL }},VERSION=${{ steps.generate.outputs.VERSION }}
-  build-7.4-php:
-    concurrency: build-7.4-php
+  build_74_php:
+    concurrency: build_74_php
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -143,8 +143,8 @@ jobs:
           push: true
           tags: ${{ steps.generate.outputs.VERSION }}
           build-args: TAG=${{ steps.generate.outputs.TAG }},URL=${{ steps.generate.outputs.URL }},VERSION=${{ steps.generate.outputs.VERSION }}
-  build-7.4-cli:
-    concurrency: build-7.4-cli
+  build_74_cli:
+    concurrency: build_74_cli
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -170,8 +170,8 @@ jobs:
           push: true
           tags: ${{ steps.generate.outputs.VERSION }}
           build-args: TAG=${{ steps.generate.outputs.TAG }},URL=${{ steps.generate.outputs.URL }},VERSION=${{ steps.generate.outputs.VERSION }}
-  build-7.4-fpm:
-    concurrency: build-7.4-fpm
+  build_74_fpm:
+    concurrency: build_74_fpm
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -197,8 +197,8 @@ jobs:
           push: true
           tags: ${{ steps.generate.outputs.VERSION }}
           build-args: TAG=${{ steps.generate.outputs.TAG }},URL=${{ steps.generate.outputs.URL }},VERSION=${{ steps.generate.outputs.VERSION }}
-  build-7.4-apache:
-    concurrency: build-7.4-apache
+  build_74_apache:
+    concurrency: build_74_apache
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -224,8 +224,8 @@ jobs:
           push: true
           tags: ${{ steps.generate.outputs.VERSION }}
           build-args: TAG=${{ steps.generate.outputs.TAG }},URL=${{ steps.generate.outputs.URL }},VERSION=${{ steps.generate.outputs.VERSION }}
-  build-8.0-php:
-    concurrency: build-8.0-php
+  build_80_php:
+    concurrency: build_80_php
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -251,8 +251,8 @@ jobs:
           push: true
           tags: ${{ steps.generate.outputs.VERSION }}
           build-args: TAG=${{ steps.generate.outputs.TAG }},URL=${{ steps.generate.outputs.URL }},VERSION=${{ steps.generate.outputs.VERSION }}
-  build-8.0-cli:
-    concurrency: build-8.0-cli
+  build_80_cli:
+    concurrency: build_80_cli
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -278,8 +278,8 @@ jobs:
           push: true
           tags: ${{ steps.generate.outputs.VERSION }}
           build-args: TAG=${{ steps.generate.outputs.TAG }},URL=${{ steps.generate.outputs.URL }},VERSION=${{ steps.generate.outputs.VERSION }}
-  build-8.0-fpm:
-    concurrency: build-8.0-fpm
+  build_80_fpm:
+    concurrency: build_80_fpm
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
@@ -305,8 +305,8 @@ jobs:
           push: true
           tags: ${{ steps.generate.outputs.VERSION }}
           build-args: TAG=${{ steps.generate.outputs.TAG }},URL=${{ steps.generate.outputs.URL }},VERSION=${{ steps.generate.outputs.VERSION }}
-  build-8.0-apache:
-    concurrency: build-8.0-apache
+  build_80_apache:
+    concurrency: build_80_apache
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
