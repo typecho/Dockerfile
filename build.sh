@@ -78,7 +78,7 @@ if [ ${generate} -eq 0 ]; then
         docker buildx inspect --bootstrap
     fi
 
-    docker buildx build --platform ${PLATFORM} ${PUSH} -t typecho:${version}-php${TAG} --no-cache --build-arg TAG=${TAG} --build-arg URL=${URL} -f ${FILE} .
+    docker buildx build --platform ${PLATFORM} ${PUSH} -t joyqi/typecho:${version}-php${TAG} --no-cache --build-arg TAG=${TAG} --build-arg URL=${URL} -f ${FILE} .
     rm -rf ${FILE}
 
     if [ ${buildx} -eq 1 ]; then
