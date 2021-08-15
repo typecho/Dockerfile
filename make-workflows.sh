@@ -21,15 +21,28 @@ for o in ${os[@]}
 do
     for p in ${php[@]}
     do
+        last=""
         for f in ${platform[@]}
         do
+            id="build_${p//./}_${f}_${o}"
+            concurrency="build_${o}_${p//./}"
+            needs=""
+
+            if [[ ${last} != "" ]]; then
+                needs=$(cat <<EOF
+    needs:
+        - ${last}
+EOF)
+            fi
+
+            last=$id
+
             if [[ ${o} != "alpine" || ${f} != "apache" ]]; then
-                id="build_${p//./}_${f}_${o}"
-                concurrency="build_${o}_${p//./}"
                 cat <<EOF
   ${id}:
     concurrency: ${concurrency}
     runs-on: ubuntu-latest
+${needs}
     steps:
       - name: Checkout the repo 
         uses: actions/checkout@v2 
