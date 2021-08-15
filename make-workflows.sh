@@ -25,9 +25,10 @@ do
         do
             if [[ ${o} != "alpine" || ${f} != "apache" ]]; then
                 id="build_${p//./}_${f}_${o}"
+                concurrency="build_${o}_${p//./}"
                 cat <<EOF
   ${id}:
-    concurrency: ${id}
+    concurrency: ${concurrency}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo 
