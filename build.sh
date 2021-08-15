@@ -47,7 +47,7 @@ LEFT=$php
 MIDDLE=""
 RIGHT=""
 URL="https://nightly.link/typecho/typecho/workflows/Typecho-dev-Ci/master/typecho_build.zip"
-PLATFORM="linux/386,linux/ppc64le,linux/s390x,linux/amd64,linux/arm64,linux/arm/v7"
+PLATFORM="linux/ppc64le,linux/s390x,linux/amd64,linux/arm64"
 PUSH=""
 CONFIG="-dir=/usr/include/"
 BUILDX="build"
