@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="dev"
+version="nightly"
 php="7.4"
 type="php"
 os="debian"
@@ -46,7 +46,7 @@ readonly type="$1"
 LEFT=$php
 MIDDLE=""
 RIGHT=""
-URL="https://nightly.link/typecho/typecho/workflows/Typecho-dev-Ci/master/typecho_build.zip"
+URL="https://nightly.link/typecho/typecho/workflows/Typecho-dev-Ci/master/typecho.zip"
 PLATFORM="linux/ppc64le,linux/s390x,linux/amd64,linux/arm64"
 PUSH=""
 CONFIG="-dir=/usr/include/"
@@ -63,8 +63,8 @@ if [[ ${os} == "alpine" && ${type} != "apache" ]]; then
     RIGHT="-${os}"
 fi
 
-if [ ${version} != "dev" ]; then
-    URL="https://github.com/typecho/typecho/releases/download/v${version}/typecho_build.zip"
+if [ ${version} != "nightly" ]; then
+    URL="https://github.com/typecho/typecho/releases/download/v${version}/typecho.zip"
 fi
 
 if [ ${php} != "7.3" ]; then

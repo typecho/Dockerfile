@@ -5,8 +5,11 @@
     echo "memory_limit = ${MEMORY_LIMIT}";
     echo "upload_max_filesize = ${MAX_POST_BODY}";
     echo "post_max_size = ${MAX_POST_BODY}";
-    echo "date.timezone = ${TIMEZONE}";
 } > /usr/local/etc/php/conf.d/custom.ini
 
-cp "/usr/share/zoneinfo/${TIMEZONE}" /etc/localtime
-echo ${TIMEZONE} > /etc/timezone
+
+if [[ -z "$TIMEZONE" ]]; then
+    echo "date.timezone = ${TIMEZONE}" >> /usr/local/etc/php/conf.d/custom.ini
+    cp "/usr/share/zoneinfo/${TIMEZONE}" /etc/localtime
+    echo ${TIMEZONE} > /etc/timezone
+fi

@@ -4,7 +4,7 @@ FROM php:$TAG
 ENV MEMORY_LIMIT=128m
 ENV MAX_POST_BODY=10m
 ENV MAX_EXECUTION_TIME=30
-ENV TIMEZONE=UTC
+ENV TIMEZONE=""
 
 # default download latest dev version
 ARG URL="https://nightly.link/typecho/typecho/workflows/Typecho-dev-Ci/master/typecho_build.zip"
