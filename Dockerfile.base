@@ -7,7 +7,7 @@ ENV MAX_EXECUTION_TIME=30
 ENV TIMEZONE=""
 
 # default download latest dev version
-ARG URL="https://nightly.link/typecho/typecho/workflows/Typecho-dev-Ci/master/typecho_build.zip"
+ARG URL="https://nightly.link/typecho/typecho/workflows/Typecho-dev-Ci/master/typecho.zip"
 ARG CONFIG=""
 
 # copy init
