@@ -107,7 +107,7 @@ default: a random 8 characters string.
 
 The admin password to create.
 
-### `TYPECHO_MAIL`
+### `TYPECHO_USER_MAIL`
 
 default: `admin@localhost.local`
 
@@ -129,4 +129,10 @@ You can expose http port `80` for those image tags who have suffix with `*-apach
 
 ```bash
 $ docker run --name typecho-server -p 8080:80 -e TYPECHO_SITE_URL=https://your-domain.com -d joyqi/typecho:nightly-php7.4-apache
+```
+
+## Volume
+
+```bash
+$ docker run --name typecho-server -v /var/typecho:/app/usr -e TYPECHO_SITE_URL=https://your-domain.com -d joyqi/typecho:nightly-php7.4
 ```
