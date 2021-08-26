@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cat <<EOF
+if [[ $1 = "" ]]; then
+    cat <<EOF
 name: Build Typecho Docker Image
 
 on:
@@ -12,6 +13,7 @@ on:
 
 jobs:
 EOF
+fi
 
 os=("debian" "alpine")
 php=("7.3" "7.4" "8.0")
@@ -28,7 +30,7 @@ do
             concurrency="build_${o}_${p//./}"
             needs=""
 
-            if [[ ${last} != "" ]]; then
+            if [[ ${last} != "" && $1 = "" ]]; then
                 needs=$(cat <<EOF
     needs:
         - ${last}
@@ -38,7 +40,8 @@ EOF)
             last=$id
 
             if [[ ${o} != "alpine" || ${f} != "apache" ]]; then
-                cat <<EOF
+                if [[ $1 = "" ]]; then
+                    cat <<EOF
   ${id}:
     concurrency: ${concurrency}
     runs-on: ubuntu-latest
@@ -71,6 +74,21 @@ ${needs}
             URL=\${{ steps.generate.outputs.URL }}
             CONFIG=\${{ steps.generate.outputs.CONFIG }}
 EOF
+                else
+                    current_platform="-${f}"
+                    
+                    if [[ ${f} = "php" ]]; then
+                        current_platform=""
+                    fi
+
+                    current_os="-${o}"
+
+                    if [[ ${o} = "debian" ]]; then
+                        current_os=""
+                    fi
+
+                    echo -n ", ${1}-php${p}${current_platform}${current_os}"
+                fi
             fi
         done
     done
