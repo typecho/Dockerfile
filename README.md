@@ -19,6 +19,20 @@ $ docker run --name typecho-server -e TYPECHO_SITE_URL=https://your-domain.com -
 
 ## Environment Variables
 
+### `TIMEZONE`
+
+default: `UTC`
+
+Server timezone, eg: `Asia/Shanghai`
+
+### `MEMORY_LIMIT`
+
+PHP memory limit, eg: `100M`
+
+### `MAX_POST_BODY`
+
+eg: `50M`
+
 ### `TYPECHO_DB_ADAPTER`
 
 default: `Pdo_Mysql`
