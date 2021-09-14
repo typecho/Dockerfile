@@ -46,7 +46,7 @@ readonly type="$1"
 LEFT=$php
 MIDDLE=""
 RIGHT=""
-URL="https://nightly.link/typecho/typecho/workflows/Typecho-dev-Ci/master/typecho.zip"
+URL="https://github.com/typecho/typecho/releases/download/ci/typecho.zip"
 PLATFORM="linux/ppc64le,linux/s390x,linux/amd64,linux/arm64"
 PUSH=""
 CONFIG="-dir=/usr/include/"
