@@ -16,4 +16,6 @@ if (!empty($_SERVER['TIMEZONE']) && file_exists("/usr/share/zoneinfo/{$_SERVER['
 
 file_put_contents('/usr/local/etc/php/conf.d/custom.ini', $ini);
 
-require '/app/install.php';
+if (!empty($_SERVER['TYPECHO_INSTALL'])) {
+    require '/app/install.php';
+}

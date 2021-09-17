@@ -33,6 +33,12 @@ PHP memory limit, eg: `100M`
 
 eg: `50M`
 
+### `TYPECHO_INSTALL`
+
+default: `0`
+
+Set to `1` if you want to run installation script automatically.
+
 ### `TYPECHO_DB_ADAPTER`
 
 default: `Pdo_Mysql`
