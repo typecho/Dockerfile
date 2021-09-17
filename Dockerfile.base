@@ -11,7 +11,7 @@ ARG URL="https://github.com/typecho/typecho/releases/download/ci/typecho.zip"
 ARG CONFIG=""
 
 # copy init
-COPY --chown=root:root ./scripts/init.sh /bin/init
+COPY --chown=root:root ./scripts/init.php /bin/init_typecho
 COPY --chown=root:root ./scripts/before.sh /bin/before
 COPY --chown=root:root ./scripts/after.sh /bin/after
 

@@ -57,6 +57,8 @@ cat Dockerfile.base > Dockerfile
 if [ ${type} != "php" ]; then
     MIDDLE="-${type}"
     cat "Dockerfile.${type}" >> Dockerfile
+else
+    cat "Dockerfile.cli" >> Dockerfile
 fi
 
 if [[ ${os} == "alpine" && ${type} != "apache" ]]; then
@@ -90,7 +92,7 @@ if [ ${generate} -eq 0 ]; then
         fi
     fi
 
-    docker ${BUILDX} -t joyqi/typecho:${version}-php${TAG} --build-arg TAG=${TAG} --build-arg URL=${URL} --build-arg CONFIG="${CONFIG}" .
+    docker ${BUILDX} --no-cache -t joyqi/typecho:${version}-php${TAG} --build-arg TAG=${TAG} --build-arg URL=${URL} --build-arg CONFIG="${CONFIG}" .
 
     if [ ${setup_buildx} -eq 1 ]; then
         docker buildx stop

@@ -1,4 +1,4 @@
 # expose fcgi port
 EXPOSE 9000
 
-CMD init ; php-fpm
+CMD init_typecho ; php-fpm

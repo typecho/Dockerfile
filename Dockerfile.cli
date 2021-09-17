@@ -1,2 +1,2 @@
 
-CMD init ; php -a
+CMD init_typecho ; php -a
