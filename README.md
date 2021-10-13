@@ -121,7 +121,7 @@ default: `typecho`
 
 The admin username to create.
 
-### `TYPECHO_USER_PASSOWRD`
+### `TYPECHO_USER_PASSWORD`
 
 default: a random 8 characters string.
 
