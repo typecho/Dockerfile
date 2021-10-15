@@ -19,8 +19,11 @@ COPY --chown=root:root ./scripts/after.sh /bin/after
 COPY --chown=root:root ./scripts/use.sh /bin/use
 
 # install dependencies
-RUN savedAptMark="$(before)" \
+RUN `use "echo #!/bin/bash" "echo #!/bin/sh"` | cat - /bin/init_typecho > temp && mv temp /bin/init_typecho && chmod +x /bin/init_typecho \
     && `use "apt-get update" "apk update"` \
+    && `use "apt-get install --no-install-recommends -y" "apk add --no-cache"` \
+        unzip \
+    && savedAptMark="$(before)" \
     && `use "apt-get install --no-install-recommends -y" "apk add --no-cache --virtual .build-deps"` \
         `use libfreetype6-dev freetype-dev` \
         `use libjpeg62-turbo-dev libjpeg-turbo-dev` \
@@ -30,7 +33,6 @@ RUN savedAptMark="$(before)" \
         libwebp-dev \
         $PHPIZE_DEPS \
         curl \
-        unzip \
     && docker-php-ext-configure gd \
         --with-freetype${CONFIG} \
         --with-jpeg${CONFIG} \

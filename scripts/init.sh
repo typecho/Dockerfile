@@ -1,4 +1,3 @@
-#!/bin/sh
 
 {
     echo "max_execution_time = ${MAX_EXECUTION_TIME}";
