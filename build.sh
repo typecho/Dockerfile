@@ -58,7 +58,7 @@ if [ ${type} != "php" ]; then
     MIDDLE="-${type}"
     cat "Dockerfile.${type}" >> Dockerfile
 else
-    cat "Dockerfile.cli" >> Dockerfile
+    cat "Dockerfile.default" >> Dockerfile
 fi
 
 if [[ ${os} == "alpine" && ${type} != "apache" ]]; then

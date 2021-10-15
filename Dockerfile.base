@@ -11,7 +11,7 @@ ARG URL="https://github.com/typecho/typecho/releases/download/ci/typecho.zip"
 ARG CONFIG=""
 
 # copy init
-COPY --chown=root:root ./scripts/init.php /bin/init_typecho
+COPY --chown=root:root ./scripts/init.sh /bin/init_typecho
 COPY --chown=root:root ./scripts/before.sh /bin/before
 COPY --chown=root:root ./scripts/after.sh /bin/after
 
@@ -46,6 +46,8 @@ RUN savedAptMark="$(before)" \
         sockets \
         tokenizer \
         opcache \
+    && curl -o /usr/src/typecho.zip -fL ${URL} \
+    && curl -o /usr/src/langs.zip -fL https://nightly.link/typecho/languages/workflows/ci/master/langs.zip \
     && after "${savedAptMark}"
 
 # config php error handler
@@ -64,5 +66,5 @@ RUN { \
 # uninstall dependencies
 RUN rm -rf /bin/use /bin/before /bin/after
 
-VOLUME /app/usr
+VOLUME /app
 WORKDIR /app
