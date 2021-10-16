@@ -19,11 +19,9 @@ COPY --chown=root:root ./scripts/after.sh /bin/after
 COPY --chown=root:root ./scripts/use.sh /bin/use
 
 # install dependencies
-RUN `use "echo #!/bin/bash" "echo #!/bin/sh"` | cat - /bin/init_typecho > temp && mv temp /bin/init_typecho && chmod +x /bin/init_typecho \
-    && `use "apt-get update" "apk update"` \
-    && `use "apt-get install --no-install-recommends -y" "apk add --no-cache"` \
-        unzip \
+RUN sed -i "s/<shell>/$(use bash sh)/g" /bin/init_typecho \
     && savedAptMark="$(before)" \
+    && `use "apt-get update" "apk update"` \
     && `use "apt-get install --no-install-recommends -y" "apk add --no-cache --virtual .build-deps"` \
         `use libfreetype6-dev freetype-dev` \
         `use libjpeg62-turbo-dev libjpeg-turbo-dev` \
@@ -32,6 +30,7 @@ RUN `use "echo #!/bin/bash" "echo #!/bin/sh"` | cat - /bin/init_typecho > temp &
         libzip-dev \
         libwebp-dev \
         $PHPIZE_DEPS \
+        unzip \
         curl \
     && docker-php-ext-configure gd \
         --with-freetype${CONFIG} \
@@ -49,7 +48,9 @@ RUN `use "echo #!/bin/bash" "echo #!/bin/sh"` | cat - /bin/init_typecho > temp &
         tokenizer \
         opcache \
     && curl -o /usr/src/typecho.zip -fL ${URL} \
+    && unzip -q /usr/src/typecho.zip -d /usr/src/typecho && chown -Rf www-data:www-data /usr/src/typecho && rm -rf /usr/src/typecho.zip \
     && curl -o /usr/src/langs.zip -fL https://nightly.link/typecho/languages/workflows/ci/master/langs.zip \
+    && unzip -q /usr/src/langs.zip -d /usr/src/typecho/usr/langs && chown -Rf www-data:www-data /usr/src/typecho/usr/langs && rm -rf /usr/src/langs.zip \
     && after "${savedAptMark}"
 
 # config php error handler

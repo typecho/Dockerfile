@@ -1,3 +1,30 @@
+#!/bin/<shell>
+
+check_and_copy() {
+    if [ ! -e /app/$1 ]; then
+        cp -Rf /usr/src/typecho/$1 /app/$1
+        chown -Rf www-data:www-data /app/$1
+    fi
+}
+
+make_and_copy() {
+    if [ ! -e /app/$1 ]; then
+        mkdir -p /app/$1
+        cp -Rf /usr/src/typecho/$1/* /app/$1/
+        chown -Rf www-data:www-data /app/$1
+    fi
+}
+
+check_and_make() {
+    if [ ! -e /app/$1 ]; then
+        mkdir -p /app/$1
+        chown -Rf www-data:www-data /app/$1
+    fi
+
+    if [ -n "$2" ]; then
+        chmod $2 /app/$1
+    fi
+}
 
 {
     echo "max_execution_time = ${MAX_EXECUTION_TIME}";
@@ -12,21 +39,16 @@ if [[ ! -z "${TIMEZONE}" && -e "/usr/share/zoneinfo/${TIMEZONE}" ]]; then
     echo $TIMEZONE > /etc/timezone
 fi
 
-if [ ! -e /app/index.php ]; then
-    unzip -q /usr/src/typecho.zip -d /app
-    chown -Rf www-data:www-data /app
-fi
-
-if [ ! -e /app/usr/uploads ]; then
-    mkdir -p /app/usr/uploads
-    chmod 755 /app/usr/uploads
-    chown -Rf www-data:www-data /app/usr/uploads
-fi
-
-if [ ! -e /app/usr/langs ]; then
-    unzip -q /usr/src/langs.zip -d /app/usr/langs
-    chown -Rf www-data:www-data /app/usr/langs
-fi
+check_and_copy 'admin'
+check_and_copy 'install'
+check_and_copy 'var'
+check_and_copy 'index.php'
+check_and_copy 'install.php'
+check_and_make 'usr'
+make_and_copy 'usr/themes'
+make_and_copy 'usr/plugins'
+make_and_copy 'usr/langs'
+check_and_make 'usr/uploads' '755'
 
 if [ ! -z "${TYPECHO_INSTALL}" ]; then
     su -p www-data -s /usr/bin/env php /app/install.php
