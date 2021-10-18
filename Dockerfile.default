@@ -1,4 +1,4 @@
 
 EXPOSE 80
 
-CMD init_typecho ; php -S 0.0.0.0:80 -t /app
+CMD init_typecho

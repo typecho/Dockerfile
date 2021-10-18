@@ -39,6 +39,7 @@ if [[ ! -z "${TIMEZONE}" && -e "/usr/share/zoneinfo/${TIMEZONE}" ]]; then
     echo $TIMEZONE > /etc/timezone
 fi
 
+chown www-data:www-data /app
 check_and_copy 'admin'
 check_and_copy 'install'
 check_and_copy 'var'
@@ -52,4 +53,14 @@ check_and_make 'usr/uploads' '755'
 
 if [ ! -z "${TYPECHO_INSTALL}" ]; then
     su -p www-data -s /usr/bin/env php /app/install.php
+fi
+
+if [ "$1" = "apache" ]; then
+    apachectl -D FOREGROUND
+elif [ "$1" = "fpm" ]; then
+    php-fpm
+elif [ "$1" = "cli" ]; then
+    su -p www-data -s /bin/<shell> -c '/usr/bin/env php'
+else
+    su -p www-data -s /bin/<shell> -c '/usr/bin/env php -S 0.0.0.0:80 -t /app'
 fi

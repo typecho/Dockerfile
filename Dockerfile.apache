@@ -15,4 +15,4 @@ RUN sed -ri -e 's!/var/www/!/app!g' /etc/apache2/apache2.conf /etc/apache2/conf-
 # expose http
 EXPOSE 80
 
-CMD init_typecho ; apachectl -D FOREGROUND
+CMD init_typecho apache
