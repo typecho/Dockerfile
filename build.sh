@@ -115,5 +115,6 @@ else
     echo "::set-output name=URL::${URL}"
     echo "::set-output name=CONFIG::${CONFIG}"
     echo "::set-output name=PLATFORM::${PLATFORM}"
+    echo "::set-output name=PHP8_SOCKETS_WORKAROUND::${PHP8_SOCKETS_WORKAROUND}"
     echo "::set-output name=VERSION::joyqi/typecho:${version}-php${TAG}"
 fi

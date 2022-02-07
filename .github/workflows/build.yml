@@ -39,6 +39,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_73_cli_debian:
     concurrency: build_debian_73
     runs-on: ubuntu-latest
@@ -71,6 +72,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_73_fpm_debian:
     concurrency: build_debian_73
     runs-on: ubuntu-latest
@@ -103,6 +105,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_73_apache_debian:
     concurrency: build_debian_73
     runs-on: ubuntu-latest
@@ -135,6 +138,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_74_php_debian:
     concurrency: build_debian_74
     runs-on: ubuntu-latest
@@ -166,6 +170,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_74_cli_debian:
     concurrency: build_debian_74
     runs-on: ubuntu-latest
@@ -198,6 +203,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_74_fpm_debian:
     concurrency: build_debian_74
     runs-on: ubuntu-latest
@@ -230,6 +236,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_74_apache_debian:
     concurrency: build_debian_74
     runs-on: ubuntu-latest
@@ -262,6 +269,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_80_php_debian:
     concurrency: build_debian_80
     runs-on: ubuntu-latest
@@ -293,6 +301,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_80_cli_debian:
     concurrency: build_debian_80
     runs-on: ubuntu-latest
@@ -325,6 +334,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_80_fpm_debian:
     concurrency: build_debian_80
     runs-on: ubuntu-latest
@@ -357,6 +367,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_80_apache_debian:
     concurrency: build_debian_80
     runs-on: ubuntu-latest
@@ -389,6 +400,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_73_php_alpine:
     concurrency: build_alpine_73
     runs-on: ubuntu-latest
@@ -420,6 +432,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_73_cli_alpine:
     concurrency: build_alpine_73
     runs-on: ubuntu-latest
@@ -452,6 +465,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_73_fpm_alpine:
     concurrency: build_alpine_73
     runs-on: ubuntu-latest
@@ -484,6 +498,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_74_php_alpine:
     concurrency: build_alpine_74
     runs-on: ubuntu-latest
@@ -515,6 +530,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_74_cli_alpine:
     concurrency: build_alpine_74
     runs-on: ubuntu-latest
@@ -547,6 +563,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_74_fpm_alpine:
     concurrency: build_alpine_74
     runs-on: ubuntu-latest
@@ -579,6 +596,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_80_php_alpine:
     concurrency: build_alpine_80
     runs-on: ubuntu-latest
@@ -610,6 +628,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_80_cli_alpine:
     concurrency: build_alpine_80
     runs-on: ubuntu-latest
@@ -642,6 +661,7 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_80_fpm_alpine:
     concurrency: build_alpine_80
     runs-on: ubuntu-latest
@@ -674,3 +694,4 @@ jobs:
             TAG=${{ steps.generate.outputs.TAG }}
             URL=${{ steps.generate.outputs.URL }}
             CONFIG=${{ steps.generate.outputs.CONFIG }}
+            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
