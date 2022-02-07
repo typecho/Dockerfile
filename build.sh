@@ -51,7 +51,7 @@ PLATFORM="linux/ppc64le,linux/s390x,linux/amd64,linux/arm64"
 PUSH=""
 CONFIG="-dir=/usr/include/"
 BUILDX="build"
-CUSTOM_CFLAGS=""
+PHP8_SOCKETS_WORKAROUND=""
 
 cat Dockerfile.base > Dockerfile
 
@@ -76,7 +76,7 @@ fi
 
 # add workaround for php 8 build error
 if [[ ${php} == "8.0" || ${php} != "8.1" ]]; then
-    CUSTOM_CFLAGS="-D_GNU_SOURCE"
+    PHP8_SOCKETS_WORKAROUND="-D_GNU_SOURCE"
 fi
 
 TAG="${LEFT}${MIDDLE}${RIGHT}"
@@ -98,7 +98,7 @@ if [ ${generate} -eq 0 ]; then
         fi
     fi
 
-    docker ${BUILDX} --no-cache -t joyqi/typecho:${version}-php${TAG} --build-arg TAG=${TAG} --build-arg URL=${URL} --build-arg CONFIG="${CONFIG}" --build-arg CUSTOM_CFLAGS="${CUSTOM_CFLAGS}" .
+    docker ${BUILDX} --no-cache -t joyqi/typecho:${version}-php${TAG} --build-arg TAG=${TAG} --build-arg URL=${URL} --build-arg CONFIG="${CONFIG}" --build-arg PHP8_SOCKETS_WORKAROUND="${PHP8_SOCKETS_WORKAROUND}" .
 
     if [ ${setup_buildx} -eq 1 ]; then
         docker buildx stop
