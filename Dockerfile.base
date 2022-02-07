@@ -1,14 +1,16 @@
 ARG TAG=latest
 FROM php:$TAG
 
+# default download latest dev version
+ARG URL="https://github.com/typecho/typecho/releases/download/ci/typecho.zip"
+ARG CONFIG=""
+ARG CUSTOM_CFLAGS=""
+
 ENV MEMORY_LIMIT=128m
 ENV MAX_POST_BODY=10m
 ENV MAX_EXECUTION_TIME=30
 ENV TIMEZONE=""
-
-# default download latest dev version
-ARG URL="https://github.com/typecho/typecho/releases/download/ci/typecho.zip"
-ARG CONFIG=""
+ENV CFLAGS="$CFLAGS ${CUSTOM_CFLAGS}"
 
 # copy init
 COPY --chown=root:root ./scripts/init.sh /bin/init_typecho
