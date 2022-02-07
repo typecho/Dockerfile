@@ -75,7 +75,7 @@ if [ ${php} != "7.3" ]; then
 fi
 
 # add workaround for php 8 build error
-if [[ ${php} == "8.0" || ${php} != "8.1" ]]; then
+if [[ ${php} == "8.0" || ${php} == "8.1" ]]; then
     PHP8_SOCKETS_WORKAROUND="-D_GNU_SOURCE"
 fi
 
