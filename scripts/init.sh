@@ -51,7 +51,7 @@ make_and_copy 'usr/plugins'
 make_and_copy 'usr/langs'
 check_and_make 'usr/uploads' '755'
 
-if [ ! -z "${TYPECHO_INSTALL}" ]; then
+if [[ ! -z "${TYPECHO_INSTALL}" && "${TYPECHO_INSTALL}" = "1" ]]; then
     su -p www-data -s /usr/bin/env php /app/install.php
 fi
 
