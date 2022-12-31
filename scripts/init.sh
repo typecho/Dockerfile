@@ -55,6 +55,10 @@ if [[ ! -z "${TYPECHO_INSTALL}" && "${TYPECHO_INSTALL}" = "1" ]]; then
     su -p www-data -s /usr/bin/env php /app/install.php
 fi
 
+if [[ ! -z "${TYPECHO_SECURE}" && "${TYPECHO_SECURE}" = "1" ]]; then
+    echo 'define('__TYPECHO_SECURE__',true);' >>/app/config.inc.php
+fi
+
 if [ "$1" = "apache" ]; then
     apachectl -D FOREGROUND
 elif [ "$1" = "fpm" ]; then
