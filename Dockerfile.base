@@ -10,9 +10,11 @@ ENV TIMEZONE=""
 ARG URL="https://github.com/typecho/typecho/releases/download/ci/typecho.zip"
 ARG CONFIG=""
 ARG PHP8_SOCKETS_WORKAROUND=""
+ARG PHP_EXTENSION=""
 
 # copy init
 COPY --chown=root:root ./scripts/init.sh /bin/init_typecho
+COPY --chown=root:root ./scripts/download.sh /bin/download
 COPY --chown=root:root ./scripts/before.sh /bin/before
 COPY --chown=root:root ./scripts/after.sh /bin/after
 
@@ -39,20 +41,8 @@ RUN sed -i "s/<shell>/$(use bash sh)/g" /bin/init_typecho \
         --with-webp${CONFIG} \
     && CFLAGS="$CFLAGS ${PHP8_SOCKETS_WORKAROUND}" docker-php-ext-install -j "$(nproc)" \
         sockets \
-    && docker-php-ext-install -j "$(nproc)" \
-        bcmath \
-        exif \
-        gd \
-        zip \
-        mysqli \
-        pdo_mysql \
-        pdo_pgsql \
-        tokenizer \
-        opcache \
-    && curl -o /usr/src/typecho.zip -fL ${URL} \
-    && unzip -q /usr/src/typecho.zip -d /usr/src/typecho && chown -Rf www-data:www-data /usr/src/typecho && rm -rf /usr/src/typecho.zip \
-    && curl -o /usr/src/langs.zip -fL https://github.com/typecho/languages/releases/download/ci/langs.zip \
-    && unzip -q /usr/src/langs.zip -d /usr/src/typecho/usr/langs && chown -Rf www-data:www-data /usr/src/typecho/usr/langs && rm -rf /usr/src/langs.zip \
+    && docker-php-ext-install -j "$(nproc)" ${PHP_EXTENSION} \
+    && download ${URL} \
     && after "${savedAptMark}"
 
 # config php error handler
@@ -69,7 +59,7 @@ RUN { \
 	} > /usr/local/etc/php/conf.d/error-logging.ini
 
 # uninstall dependencies
-RUN rm -rf /bin/use /bin/before /bin/after
+RUN rm -rf /bin/use /bin/download /bin/before /bin/after
 
 VOLUME /app
 WORKDIR /app

@@ -52,6 +52,7 @@ PUSH=""
 CONFIG="-dir=/usr/include/"
 BUILDX="build"
 PHP8_SOCKETS_WORKAROUND=""
+PHP_EXTENSION="bcmath exif gd zip mysqli pdo_mysql pdo_pgsql tokenizer opcache"
 
 cat Dockerfile.base > Dockerfile
 
@@ -66,7 +67,9 @@ if [[ ${os} == "alpine" && ${type} != "apache" ]]; then
     RIGHT="-${os}"
 fi
 
-if [ ${version} != "nightly" ]; then
+if [ ${version} == "dev" ]; then
+    URL="dev"
+elif [ ${version} != "nightly" ]; then
     URL="https://github.com/typecho/typecho/releases/download/v${version}/typecho.zip"
 fi
 
@@ -77,6 +80,11 @@ fi
 # add workaround for php 8 build error
 if [[ ${php} == "8.0" || ${php} == "8.1" ]]; then
     PHP8_SOCKETS_WORKAROUND="-D_GNU_SOURCE"
+fi
+
+# disable tokenzier extension for php 8.1
+if [ ${php} == "8.1" ]; then
+    PHP_EXTENSION="bcmath exif gd zip mysqli pdo_mysql pdo_pgsql opcache"
 fi
 
 TAG="${LEFT}${MIDDLE}${RIGHT}"
@@ -98,7 +106,7 @@ if [ ${generate} -eq 0 ]; then
         fi
     fi
 
-    docker ${BUILDX} --no-cache -t joyqi/typecho:${version}-php${TAG} --build-arg TAG=${TAG} --build-arg URL=${URL} --build-arg CONFIG="${CONFIG}" --build-arg PHP8_SOCKETS_WORKAROUND="${PHP8_SOCKETS_WORKAROUND}" .
+    docker ${BUILDX} --no-cache -t joyqi/typecho:${version}-php${TAG} --build-arg TAG=${TAG} --build-arg URL=${URL} --build-arg CONFIG="${CONFIG}" --build-arg PHP_EXTENSION="${PHP_EXTENSION}" --build-arg PHP8_SOCKETS_WORKAROUND="${PHP8_SOCKETS_WORKAROUND}" .
 
     if [ ${setup_buildx} -eq 1 ]; then
         docker buildx stop
