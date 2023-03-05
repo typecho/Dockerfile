@@ -73,6 +73,7 @@ ${needs}
             TAG=\${{ steps.generate.outputs.TAG }}
             URL=\${{ steps.generate.outputs.URL }}
             CONFIG=\${{ steps.generate.outputs.CONFIG }}
+            PHP_EXTENSION=\${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=\${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
 EOF
                 else

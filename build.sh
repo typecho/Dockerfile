@@ -119,10 +119,11 @@ if [ ${generate} -eq 0 ]; then
     
     rm -rf Dockerfile
 else
-    echo "::set-output name=TAG::${TAG}"
-    echo "::set-output name=URL::${URL}"
-    echo "::set-output name=CONFIG::${CONFIG}"
-    echo "::set-output name=PLATFORM::${PLATFORM}"
-    echo "::set-output name=PHP8_SOCKETS_WORKAROUND::${PHP8_SOCKETS_WORKAROUND}"
-    echo "::set-output name=VERSION::joyqi/typecho:${version}-php${TAG}"
+    echo "TAG=${TAG}" >> $GITHUB_OUTPUT
+    echo "URL=${URL}" >> $GITHUB_OUTPUT
+    echo "CONFIG=${CONFIG}" >> $GITHUB_OUTPUT
+    echo "PLATFORM=${PLATFORM}" >> $GITHUB_OUTPUT
+    echo "PHP8_SOCKETS_WORKAROUND=${PHP8_SOCKETS_WORKAROUND}" >> $GITHUB_OUTPUT
+    echo "PHP_EXTENSION=${PHP_EXTENSION}" >> $GITHUB_OUTPUT
+    echo "VERSION=joyqi/typecho:${version}-php${TAG}" >> $GITHUB_OUTPUT
 fi
