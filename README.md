@@ -65,7 +65,7 @@ services:
 
 ## Port
 
-| Image Tag               | Port | Desscription                                                                                       |
+| Image Tag               | Port | Description                                                                                       |
 |-------------------------|------|----------------------------------------------------------------------------------------------------|
 | `*-fpm`                 | 9000 | FastCGI port for php-fpm.                                                                          |
 | `*-apache`              | 80   | Http port for apache.                                                                              |
@@ -75,7 +75,7 @@ services:
 
 You can mount some local directories to these container directories for persistent data.
 
-| Container Directory     | Desscription                                                                                       |
+| Container Directory     | Description                                                                                       |
 |-------------------------|----------------------------------------------------------------------------------------------------|
 | `/app/usr`              | Typecho data directory. If you mount this directory to local, the following directories will be included. |
 | `/app/usr/plugins`      | Typecho plugins directory.                                                                         |
