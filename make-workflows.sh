@@ -16,7 +16,7 @@ EOF
 fi
 
 os=("debian" "alpine")
-php=("7.3" "7.4" "8.0")
+php=("7.4" "8.2")
 platform=("php" "cli" "fpm" "apache")
 
 for o in ${os[@]}

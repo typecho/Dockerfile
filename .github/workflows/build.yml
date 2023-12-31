@@ -8,141 +8,6 @@ on:
         required: true
 
 jobs:
-  build_73_php_debian:
-    concurrency: build_debian_73
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to DockerHub
-        uses: docker/login-action@v1 
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Generate Dockerfile
-        id: generate
-        run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o debian php
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          platforms: ${{ steps.generate.outputs.PLATFORM }}
-          push: true
-          tags: ${{ steps.generate.outputs.VERSION }}
-          build-args: |
-            TAG=${{ steps.generate.outputs.TAG }}
-            URL=${{ steps.generate.outputs.URL }}
-            CONFIG=${{ steps.generate.outputs.CONFIG }}
-            PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
-            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_73_cli_debian:
-    concurrency: build_debian_73
-    runs-on: ubuntu-latest
-    needs:
-        - build_73_php_debian
-    steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to DockerHub
-        uses: docker/login-action@v1 
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Generate Dockerfile
-        id: generate
-        run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o debian cli
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          platforms: ${{ steps.generate.outputs.PLATFORM }}
-          push: true
-          tags: ${{ steps.generate.outputs.VERSION }}
-          build-args: |
-            TAG=${{ steps.generate.outputs.TAG }}
-            URL=${{ steps.generate.outputs.URL }}
-            CONFIG=${{ steps.generate.outputs.CONFIG }}
-            PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
-            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_73_fpm_debian:
-    concurrency: build_debian_73
-    runs-on: ubuntu-latest
-    needs:
-        - build_73_cli_debian
-    steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to DockerHub
-        uses: docker/login-action@v1 
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Generate Dockerfile
-        id: generate
-        run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o debian fpm
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          platforms: ${{ steps.generate.outputs.PLATFORM }}
-          push: true
-          tags: ${{ steps.generate.outputs.VERSION }}
-          build-args: |
-            TAG=${{ steps.generate.outputs.TAG }}
-            URL=${{ steps.generate.outputs.URL }}
-            CONFIG=${{ steps.generate.outputs.CONFIG }}
-            PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
-            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_73_apache_debian:
-    concurrency: build_debian_73
-    runs-on: ubuntu-latest
-    needs:
-        - build_73_fpm_debian
-    steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to DockerHub
-        uses: docker/login-action@v1 
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Generate Dockerfile
-        id: generate
-        run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o debian apache
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          platforms: ${{ steps.generate.outputs.PLATFORM }}
-          push: true
-          tags: ${{ steps.generate.outputs.VERSION }}
-          build-args: |
-            TAG=${{ steps.generate.outputs.TAG }}
-            URL=${{ steps.generate.outputs.URL }}
-            CONFIG=${{ steps.generate.outputs.CONFIG }}
-            PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
-            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
   build_74_php_debian:
     concurrency: build_debian_74
     runs-on: ubuntu-latest
@@ -278,8 +143,8 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_80_php_debian:
-    concurrency: build_debian_80
+  build_82_php_debian:
+    concurrency: build_debian_82
     runs-on: ubuntu-latest
 
     steps:
@@ -297,7 +162,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o debian php
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.2 -o debian php
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -311,11 +176,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_80_cli_debian:
-    concurrency: build_debian_80
+  build_82_cli_debian:
+    concurrency: build_debian_82
     runs-on: ubuntu-latest
     needs:
-        - build_80_php_debian
+        - build_82_php_debian
     steps:
       - name: Checkout the repo 
         uses: actions/checkout@v2 
@@ -331,7 +196,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o debian cli
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.2 -o debian cli
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -345,11 +210,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_80_fpm_debian:
-    concurrency: build_debian_80
+  build_82_fpm_debian:
+    concurrency: build_debian_82
     runs-on: ubuntu-latest
     needs:
-        - build_80_cli_debian
+        - build_82_cli_debian
     steps:
       - name: Checkout the repo 
         uses: actions/checkout@v2 
@@ -365,7 +230,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o debian fpm
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.2 -o debian fpm
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -379,11 +244,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_80_apache_debian:
-    concurrency: build_debian_80
+  build_82_apache_debian:
+    concurrency: build_debian_82
     runs-on: ubuntu-latest
     needs:
-        - build_80_fpm_debian
+        - build_82_fpm_debian
     steps:
       - name: Checkout the repo 
         uses: actions/checkout@v2 
@@ -399,108 +264,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o debian apache
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          platforms: ${{ steps.generate.outputs.PLATFORM }}
-          push: true
-          tags: ${{ steps.generate.outputs.VERSION }}
-          build-args: |
-            TAG=${{ steps.generate.outputs.TAG }}
-            URL=${{ steps.generate.outputs.URL }}
-            CONFIG=${{ steps.generate.outputs.CONFIG }}
-            PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
-            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_73_php_alpine:
-    concurrency: build_alpine_73
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to DockerHub
-        uses: docker/login-action@v1 
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Generate Dockerfile
-        id: generate
-        run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o alpine php
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          platforms: ${{ steps.generate.outputs.PLATFORM }}
-          push: true
-          tags: ${{ steps.generate.outputs.VERSION }}
-          build-args: |
-            TAG=${{ steps.generate.outputs.TAG }}
-            URL=${{ steps.generate.outputs.URL }}
-            CONFIG=${{ steps.generate.outputs.CONFIG }}
-            PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
-            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_73_cli_alpine:
-    concurrency: build_alpine_73
-    runs-on: ubuntu-latest
-    needs:
-        - build_73_php_alpine
-    steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to DockerHub
-        uses: docker/login-action@v1 
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Generate Dockerfile
-        id: generate
-        run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o alpine cli
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          platforms: ${{ steps.generate.outputs.PLATFORM }}
-          push: true
-          tags: ${{ steps.generate.outputs.VERSION }}
-          build-args: |
-            TAG=${{ steps.generate.outputs.TAG }}
-            URL=${{ steps.generate.outputs.URL }}
-            CONFIG=${{ steps.generate.outputs.CONFIG }}
-            PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
-            PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_73_fpm_alpine:
-    concurrency: build_alpine_73
-    runs-on: ubuntu-latest
-    needs:
-        - build_73_cli_alpine
-    steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to DockerHub
-        uses: docker/login-action@v1 
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Generate Dockerfile
-        id: generate
-        run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.3 -o alpine fpm
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.2 -o debian apache
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -615,8 +379,8 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_80_php_alpine:
-    concurrency: build_alpine_80
+  build_82_php_alpine:
+    concurrency: build_alpine_82
     runs-on: ubuntu-latest
 
     steps:
@@ -634,7 +398,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o alpine php
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.2 -o alpine php
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -648,11 +412,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_80_cli_alpine:
-    concurrency: build_alpine_80
+  build_82_cli_alpine:
+    concurrency: build_alpine_82
     runs-on: ubuntu-latest
     needs:
-        - build_80_php_alpine
+        - build_82_php_alpine
     steps:
       - name: Checkout the repo 
         uses: actions/checkout@v2 
@@ -668,7 +432,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o alpine cli
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.2 -o alpine cli
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -682,11 +446,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_80_fpm_alpine:
-    concurrency: build_alpine_80
+  build_82_fpm_alpine:
+    concurrency: build_alpine_82
     runs-on: ubuntu-latest
     needs:
-        - build_80_cli_alpine
+        - build_82_cli_alpine
     steps:
       - name: Checkout the repo 
         uses: actions/checkout@v2 
@@ -702,7 +466,7 @@ jobs:
       - name: Generate Dockerfile
         id: generate
         run: |
-          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.0 -o alpine fpm
+          ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.2 -o alpine fpm
       - name: Build and push
         uses: docker/build-push-action@v2
         with:

@@ -78,12 +78,12 @@ if [ ${php} != "7.3" ]; then
 fi
 
 # add workaround for php 8 build error
-if [[ ${php} == "8.0" || ${php} == "8.1" ]]; then
+if [[ ${php} == "8.0" || ${php} == "8.1" || ${php} == "8.2" ]]; then
     PHP8_SOCKETS_WORKAROUND="-D_GNU_SOURCE"
 fi
 
 # disable tokenzier extension for php 8.1
-if [ ${php} == "8.1" ]; then
+if [[ ${php} == "8.1" || ${php} == "8.2" ]]; then
     PHP_EXTENSION="bcmath exif gd zip mysqli pdo_mysql pdo_pgsql opcache"
 fi
 
