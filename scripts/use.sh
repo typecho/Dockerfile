@@ -3,7 +3,11 @@
 IS_APLINE=$(cat /etc/os-release | grep "NAME=" | grep -ic "Alpine")
 
 if [ ${IS_APLINE} -gt 0 ]; then
-    echo $2
+    if [ "$2" != "-" ]; then
+        echo $2
+    fi
 else
-    echo $1
+    if [ "$1" != "-" ]; then
+        echo $1
+    fi
 fi
