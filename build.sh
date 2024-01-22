@@ -8,6 +8,7 @@ generate=0
 upload=0
 buildx=0
 setup_buildx=0
+dockerhub_username=${dockerhub_username:-joyqi}
 
 display_usage_and_exit() {
   echo "Usage: $(basename "$0") [-g] [-u] [-x] [-s] [-v <typecho version>] [-p <php version>] [-o <os>] <type>" >&2
@@ -106,7 +107,7 @@ if [ ${generate} -eq 0 ]; then
         fi
     fi
 
-    docker ${BUILDX} --no-cache -t joyqi/typecho:${version}-php${TAG} --build-arg TAG=${TAG} --build-arg URL=${URL} --build-arg CONFIG="${CONFIG}" --build-arg PHP_EXTENSION="${PHP_EXTENSION}" --build-arg PHP8_SOCKETS_WORKAROUND="${PHP8_SOCKETS_WORKAROUND}" .
+    docker ${BUILDX} --no-cache -t ${dockerhub_username}/typecho:${version}-php${TAG} --build-arg TAG=${TAG} --build-arg URL=${URL} --build-arg CONFIG="${CONFIG}" --build-arg PHP_EXTENSION="${PHP_EXTENSION}" --build-arg PHP8_SOCKETS_WORKAROUND="${PHP8_SOCKETS_WORKAROUND}" .
 
     if [ ${setup_buildx} -eq 1 ]; then
         docker buildx stop
@@ -114,7 +115,7 @@ if [ ${generate} -eq 0 ]; then
     fi
 
     if [[ ${buildx} -eq 0 && ${upload} -eq 1 ]]; then
-        docker push joyqi/typecho:${version}-php${TAG}
+        docker push ${dockerhub_username}/typecho:${version}-php${TAG}
     fi
     
     rm -rf Dockerfile
@@ -125,5 +126,5 @@ else
     echo "PLATFORM=${PLATFORM}" >> $GITHUB_OUTPUT
     echo "PHP8_SOCKETS_WORKAROUND=${PHP8_SOCKETS_WORKAROUND}" >> $GITHUB_OUTPUT
     echo "PHP_EXTENSION=${PHP_EXTENSION}" >> $GITHUB_OUTPUT
-    echo "VERSION=joyqi/typecho:${version}-php${TAG}" >> $GITHUB_OUTPUT
+    echo "VERSION=${dockerhub_username}/typecho:${version}-php${TAG}" >> $GITHUB_OUTPUT
 fi
