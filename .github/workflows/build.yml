@@ -13,14 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -28,8 +28,10 @@ jobs:
         id: generate
         run: |
           ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o debian php
+        env:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: ${{ steps.generate.outputs.PLATFORM }}
@@ -47,14 +49,14 @@ jobs:
     needs:
         - build_74_php_debian
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -62,8 +64,10 @@ jobs:
         id: generate
         run: |
           ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o debian cli
+        env:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: ${{ steps.generate.outputs.PLATFORM }}
@@ -81,14 +85,14 @@ jobs:
     needs:
         - build_74_cli_debian
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -96,8 +100,10 @@ jobs:
         id: generate
         run: |
           ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o debian fpm
+        env:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: ${{ steps.generate.outputs.PLATFORM }}
@@ -115,14 +121,14 @@ jobs:
     needs:
         - build_74_fpm_debian
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -130,8 +136,10 @@ jobs:
         id: generate
         run: |
           ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o debian apache
+        env:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: ${{ steps.generate.outputs.PLATFORM }}
@@ -148,14 +156,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -163,8 +171,10 @@ jobs:
         id: generate
         run: |
           ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.2 -o debian php
+        env:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: ${{ steps.generate.outputs.PLATFORM }}
@@ -182,14 +192,14 @@ jobs:
     needs:
         - build_82_php_debian
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -197,8 +207,10 @@ jobs:
         id: generate
         run: |
           ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.2 -o debian cli
+        env:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: ${{ steps.generate.outputs.PLATFORM }}
@@ -216,14 +228,14 @@ jobs:
     needs:
         - build_82_cli_debian
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -231,8 +243,10 @@ jobs:
         id: generate
         run: |
           ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.2 -o debian fpm
+        env:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: ${{ steps.generate.outputs.PLATFORM }}
@@ -250,14 +264,14 @@ jobs:
     needs:
         - build_82_fpm_debian
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -265,8 +279,10 @@ jobs:
         id: generate
         run: |
           ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.2 -o debian apache
+        env:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: ${{ steps.generate.outputs.PLATFORM }}
@@ -283,14 +299,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -298,8 +314,10 @@ jobs:
         id: generate
         run: |
           ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o alpine php
+        env:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: ${{ steps.generate.outputs.PLATFORM }}
@@ -317,14 +335,14 @@ jobs:
     needs:
         - build_74_php_alpine
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -332,8 +350,10 @@ jobs:
         id: generate
         run: |
           ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o alpine cli
+        env:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: ${{ steps.generate.outputs.PLATFORM }}
@@ -351,14 +371,14 @@ jobs:
     needs:
         - build_74_cli_alpine
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -366,8 +386,10 @@ jobs:
         id: generate
         run: |
           ./build.sh -g -v ${{ github.event.inputs.version }} -p 7.4 -o alpine fpm
+        env:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: ${{ steps.generate.outputs.PLATFORM }}
@@ -384,14 +406,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -399,8 +421,10 @@ jobs:
         id: generate
         run: |
           ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.2 -o alpine php
+        env:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: ${{ steps.generate.outputs.PLATFORM }}
@@ -418,14 +442,14 @@ jobs:
     needs:
         - build_82_php_alpine
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -433,8 +457,10 @@ jobs:
         id: generate
         run: |
           ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.2 -o alpine cli
+        env:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: ${{ steps.generate.outputs.PLATFORM }}
@@ -452,14 +478,14 @@ jobs:
     needs:
         - build_82_cli_alpine
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -467,8 +493,10 @@ jobs:
         id: generate
         run: |
           ./build.sh -g -v ${{ github.event.inputs.version }} -p 8.2 -o alpine fpm
+        env:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: ${{ steps.generate.outputs.PLATFORM }}
