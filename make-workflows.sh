@@ -47,14 +47,14 @@ EOF)
     runs-on: ubuntu-latest
 ${needs}
     steps:
-      - name: Checkout the repo 
-        uses: actions/checkout@v2 
+      - name: Checkout the repo
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v3
         with:
           username: \${{ secrets.DOCKERHUB_USERNAME }}
           password: \${{ secrets.DOCKERHUB_TOKEN }}
@@ -62,8 +62,10 @@ ${needs}
         id: generate
         run: |
           ./build.sh -g -v \${{ github.event.inputs.version }} -p ${p} -o ${o} ${f}
+        env:
+          dockerhub_username: \${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: \${{ steps.generate.outputs.PLATFORM }}
