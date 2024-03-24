@@ -1,11 +1,11 @@
 # Quick reference
 
 * Maintained by: [Typecho Dev Team](https://github.com/typecho)
-* Where to get help: [the Typecho Docker Github issues](https://github.com/typecho/Dockerfile/issues)
+* Where to get help: [the Typecho Docker GitHub issues](https://github.com/typecho/Dockerfile/issues)
 
 # Supported tags and respective `Dockerfile` links
 
-* [nightly-php7.3, nightly-php7.3-cli, nightly-php7.3-fpm, nightly-php7.3-apache, nightly-php7.4, nightly-php7.4-cli, nightly-php7.4-fpm, nightly-php7.4-apache, nightly-php8.0, nightly-php8.0-cli, nightly-php8.0-fpm, nightly-php8.0-apache, nightly-php7.3-alpine, nightly-php7.3-cli-alpine, nightly-php7.3-fpm-alpine, nightly-php7.4-alpine, nightly-php7.4-cli-alpine, nightly-php7.4-fpm-alpine, nightly-php8.0-alpine, nightly-php8.0-cli-alpine, nightly-php8.0-fpm-alpine](https://github.com/typecho/Dockerfile)
+* [nightly-php7.4, nightly-php7.4-cli, nightly-php7.4-fpm, nightly-php7.4-apache, nightly-php8.2, nightly-php8.2-cli, nightly-php8.2-fpm, nightly-php8.2-apache, nightly-php7.4-alpine, nightly-php7.4-cli-alpine, nightly-php7.4-fpm-alpine, nightly-php8.2-alpine, nightly-php8.2-cli-alpine, nightly-php8.2-fpm-alpine](https://github.com/typecho/Dockerfile)
 
 # How to use this image
 
