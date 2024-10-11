@@ -1,2 +1,2 @@
 
-CMD init_typecho cli
+CMD ["init_typecho", "cli"]
