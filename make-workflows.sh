@@ -50,9 +50,9 @@ ${needs}
       - name: Checkout the repo
         uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
@@ -65,7 +65,7 @@ ${needs}
         env:
           dockerhub_username: \${{ secrets.DOCKERHUB_USERNAME }}
       - name: Build and push
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: .
           platforms: \${{ steps.generate.outputs.PLATFORM }}
