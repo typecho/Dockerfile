@@ -40,10 +40,9 @@ RUN sed -i "s/<shell>/$(use bash sh)/g" /bin/init_typecho \
         --with-freetype${CONFIG} \
         --with-jpeg${CONFIG} \
         --with-webp${CONFIG} \
-    && docker-php-ext-install -j "$(nproc)" gd \
+    && docker-php-ext-install -j "$(nproc)" ${PHP_EXTENSION} \
     && CFLAGS="$CFLAGS ${PHP8_SOCKETS_WORKAROUND}" docker-php-ext-install -j "$(nproc)" \
         sockets \
-    && docker-php-ext-install -j "$(nproc)" ${PHP_EXTENSION} \
     && download ${URL} \
     && after "${savedAptMark}"
 

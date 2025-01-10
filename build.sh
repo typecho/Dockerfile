@@ -53,7 +53,7 @@ PUSH=""
 CONFIG="-dir=/usr/include/"
 BUILDX="build"
 PHP8_SOCKETS_WORKAROUND=""
-PHP_EXTENSION="bcmath exif zip mysqli pdo_mysql pdo_pgsql tokenizer opcache"
+PHP_EXTENSION="gd bcmath exif zip mysqli pdo_mysql pdo_pgsql tokenizer opcache"
 
 cat Dockerfile.base > Dockerfile
 
@@ -85,7 +85,7 @@ fi
 
 # disable tokenzier extension for php 8.1
 if [[ ${php} == "8.1" || ${php} == "8.2" ]]; then
-    PHP_EXTENSION="bcmath exif zip mysqli pdo_mysql pdo_pgsql opcache"
+    PHP_EXTENSION="gd bcmath exif zip mysqli pdo_mysql pdo_pgsql opcache"
 fi
 
 TAG="${LEFT}${MIDDLE}${RIGHT}"
