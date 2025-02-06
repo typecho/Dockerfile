@@ -44,7 +44,7 @@ EOF)
                     cat <<EOF
   ${id}:
     concurrency: ${concurrency}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 ${needs}
     steps:
       - name: Checkout the repo
