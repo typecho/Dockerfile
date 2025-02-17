@@ -51,6 +51,11 @@ ${needs}
         uses: actions/checkout@v4
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
+        with:
+          # setup-qemu-action by default uses 'tonistiigi/binfmt:latest' image,
+          # which is out of date. This causes seg faults during build.
+          # Here we manually fix the version.
+          image: tonistiigi/binfmt:qemu-v7.0.0
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Login to DockerHub
