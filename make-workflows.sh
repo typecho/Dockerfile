@@ -26,8 +26,8 @@ do
         last=""
         for f in ${platform[@]}
         do
-            id="build_${p//./}_${f}_${o}"
-            concurrency="build_${o}_${p//./}"
+            id="image_${p//./}_${f}_${o}"
+            concurrency="image_${o}_${p//./}"
             needs=""
 
             if [[ ${last} != "" && $1 = "" ]]; then

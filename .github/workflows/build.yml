@@ -8,8 +8,8 @@ on:
         required: true
 
 jobs:
-  build_74_php_debian:
-    concurrency: build_debian_74
+  image_74_php_debian:
+    concurrency: image_debian_74
     runs-on: ubuntu-22.04
 
     steps:
@@ -43,11 +43,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_74_cli_debian:
-    concurrency: build_debian_74
+  image_74_cli_debian:
+    concurrency: image_debian_74
     runs-on: ubuntu-22.04
     needs:
-        - build_74_php_debian
+        - image_74_php_debian
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v4
@@ -79,11 +79,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_74_fpm_debian:
-    concurrency: build_debian_74
+  image_74_fpm_debian:
+    concurrency: image_debian_74
     runs-on: ubuntu-22.04
     needs:
-        - build_74_cli_debian
+        - image_74_cli_debian
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v4
@@ -115,11 +115,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_74_apache_debian:
-    concurrency: build_debian_74
+  image_74_apache_debian:
+    concurrency: image_debian_74
     runs-on: ubuntu-22.04
     needs:
-        - build_74_fpm_debian
+        - image_74_fpm_debian
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v4
@@ -151,8 +151,8 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_82_php_debian:
-    concurrency: build_debian_82
+  image_82_php_debian:
+    concurrency: image_debian_82
     runs-on: ubuntu-22.04
 
     steps:
@@ -186,11 +186,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_82_cli_debian:
-    concurrency: build_debian_82
+  image_82_cli_debian:
+    concurrency: image_debian_82
     runs-on: ubuntu-22.04
     needs:
-        - build_82_php_debian
+        - image_82_php_debian
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v4
@@ -222,11 +222,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_82_fpm_debian:
-    concurrency: build_debian_82
+  image_82_fpm_debian:
+    concurrency: image_debian_82
     runs-on: ubuntu-22.04
     needs:
-        - build_82_cli_debian
+        - image_82_cli_debian
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v4
@@ -258,11 +258,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_82_apache_debian:
-    concurrency: build_debian_82
+  image_82_apache_debian:
+    concurrency: image_debian_82
     runs-on: ubuntu-22.04
     needs:
-        - build_82_fpm_debian
+        - image_82_fpm_debian
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v4
@@ -294,8 +294,8 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_74_php_alpine:
-    concurrency: build_alpine_74
+  image_74_php_alpine:
+    concurrency: image_alpine_74
     runs-on: ubuntu-22.04
 
     steps:
@@ -329,11 +329,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_74_cli_alpine:
-    concurrency: build_alpine_74
+  image_74_cli_alpine:
+    concurrency: image_alpine_74
     runs-on: ubuntu-22.04
     needs:
-        - build_74_php_alpine
+        - image_74_php_alpine
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v4
@@ -365,11 +365,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_74_fpm_alpine:
-    concurrency: build_alpine_74
+  image_74_fpm_alpine:
+    concurrency: image_alpine_74
     runs-on: ubuntu-22.04
     needs:
-        - build_74_cli_alpine
+        - image_74_cli_alpine
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v4
@@ -401,8 +401,8 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_82_php_alpine:
-    concurrency: build_alpine_82
+  image_82_php_alpine:
+    concurrency: image_alpine_82
     runs-on: ubuntu-22.04
 
     steps:
@@ -436,11 +436,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_82_cli_alpine:
-    concurrency: build_alpine_82
+  image_82_cli_alpine:
+    concurrency: image_alpine_82
     runs-on: ubuntu-22.04
     needs:
-        - build_82_php_alpine
+        - image_82_php_alpine
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v4
@@ -472,11 +472,11 @@ jobs:
             CONFIG=${{ steps.generate.outputs.CONFIG }}
             PHP_EXTENSION=${{ steps.generate.outputs.PHP_EXTENSION }}
             PHP8_SOCKETS_WORKAROUND=${{ steps.generate.outputs.PHP8_SOCKETS_WORKAROUND }}
-  build_82_fpm_alpine:
-    concurrency: build_alpine_82
+  image_82_fpm_alpine:
+    concurrency: image_alpine_82
     runs-on: ubuntu-22.04
     needs:
-        - build_82_cli_alpine
+        - image_82_cli_alpine
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v4
