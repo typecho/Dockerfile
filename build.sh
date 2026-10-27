@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="nightly"
-php="7.4"
+php="8.2"
 type="php"
 os="debian"
 generate=0

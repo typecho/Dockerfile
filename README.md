@@ -5,14 +5,14 @@
 
 # Supported tags and respective `Dockerfile` links
 
-* [nightly-php7.4, nightly-php7.4-cli, nightly-php7.4-fpm, nightly-php7.4-apache, nightly-php8.2, nightly-php8.2-cli, nightly-php8.2-fpm, nightly-php8.2-apache, nightly-php7.4-alpine, nightly-php7.4-cli-alpine, nightly-php7.4-fpm-alpine, nightly-php8.2-alpine, nightly-php8.2-cli-alpine, nightly-php8.2-fpm-alpine](https://github.com/typecho/Dockerfile)
+* [nightly-php8.2, nightly-php8.2-cli, nightly-php8.2-fpm, nightly-php8.2-apache, nightly-php7.4-alpine, nightly-php7.4-cli-alpine, nightly-php7.4-fpm-alpine, nightly-php8.2-alpine, nightly-php8.2-cli-alpine, nightly-php8.2-fpm-alpine](https://github.com/typecho/Dockerfile)
 
 # How to use this image
 
 ## Start via `docker run`
 
 ```bash
-$ docker run --name typecho-server -e TYPECHO_SITE_URL=https://your-domain.com -d joyqi/typecho:nightly-php7.4-apache
+$ docker run --name typecho-server -e TYPECHO_SITE_URL=https://your-domain.com -d joyqi/typecho:nightly-php8.2-apache
 ```
 
 ## Start via `docker-compose`
@@ -22,7 +22,7 @@ version: '3.7'
 
 services:
   typecho:
-    image: joyqi/typecho:nightly-php7.4-apache
+    image: joyqi/typecho:nightly-php8.2-apache
     container_name: typecho-server
     restart: always
     environment:
