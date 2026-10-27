@@ -23,6 +23,12 @@ for o in ${os[@]}
 do
     for p in ${php[@]}
     do
+        # skip php 7.4 on debian: its base image is Debian 11 (bullseye), which is EOL
+        # and the security repo no longer serves its packages
+        if [[ ${o} = "debian" && ${p} = "7.4" ]]; then
+            continue
+        fi
+
         last=""
         for f in ${platform[@]}
         do
